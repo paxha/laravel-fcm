@@ -30,5 +30,8 @@
                 "LaravelFCM\\FCMServiceProvider"
             ]
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
