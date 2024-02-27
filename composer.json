@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Paxha\\LaravelFcm\\": "src/"
+            "LaravelFCM\\": "src/"
         }
     },
     "authors": [
@@ -14,5 +14,21 @@
             "email": "e.hassanrazapasha@gmail.com"
         }
     ],
-    "require": {}
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "orchestra/testbench": "^8.21"
+    },
+    "require": {
+        "php": "^7.*|^8.*",
+        "google/apiclient": "^2.15",
+        "ext-json": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelFCM\\FCMServiceProvider"
+            ]
+        }
+    }
 }
