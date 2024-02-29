@@ -26,7 +26,7 @@ class FCMChannel
      * @throws Exception
      * @throws \Exception
      */
-    public function send($notifiable, $notification): void
+    public function send($notifiable, $notification)
     {
         $token = $notifiable->routeNotificationForFCM();
 

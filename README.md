@@ -8,13 +8,8 @@
 
 ## Introduction
 
-This package, Laravel FCM (Firebase Cloud Messaging), is designed to facilitate the sending of notifications using the
-Firebase Cloud Messaging HTTP v1 API. It provides a simple and efficient way to handle FCM notifications within a
-Laravel application. With this package, developers can easily integrate FCM notifications into their Laravel projects,
-allowing for real-time updates and communication with users. The package leverages the power of Firebase's robust cloud
-messaging service, making it easier to send targeted notifications to different user segments.
-
-For more information about the Firebase Cloud Messaging HTTP v1 API, please refer to the official
+This package provides channels for sending notifications using the Firebase Cloud Messaging HTTP v1 API. For more
+information about the Firebase Cloud Messaging HTTP v1 API, please refer to the official
 documentation: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages
 
 ## Installation
@@ -31,14 +26,15 @@ composer require paxha/laravel-fcm
 php artisan vendor:publish --tag=fcm-config
 ```
 
-This will create a new `fcm.php` file in your `config` directory, where you can configure your FCM settings.
+This will create a new `fcm.php` file in your `config` directory, where you can configure your FCM settings. If you
+don't publish it, it will create a default channel named `fcm` with the default configuration.
 
 ## Configuration
 
 You can configure your FCM settings in the `fcm.php` file. Here's an example of the default configuration:
 
 ```php
-'fcm' => [
+'fcm' => [ // this fcm key is the channel name you can create multiple channels over here...
     'project' => env('GOOGLE_PROJECT'),
     'service_account' => env('GOOGLE_SERVICE_ACCOUNT'),
 ],
