@@ -8,8 +8,9 @@
 
 ## Introduction
 
-This package provides channels for sending notifications using the Firebase Cloud Messaging HTTP v1 API. For more
-information about the Firebase Cloud Messaging HTTP v1 API, please refer to the official
+This package provides ([Laravel Notification](https://laravel.com/docs/10.x/notifications)) **channels** for sending
+notifications via FCM (Firebase Cloud Messaging) using **HTTP v1 API**. For more information about the Firebase Cloud
+Messaging HTTP v1 API, please refer to the official
 documentation: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages
 
 ## Installation

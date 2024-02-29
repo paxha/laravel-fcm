@@ -1,6 +1,6 @@
 {
     "name": "paxha/laravel-fcm",
-    "description": "This package, Laravel FCM (Firebase Cloud Messaging), is designed to facilitate the sending of notifications using the Firebase Cloud Messaging HTTP v1 API. It provides a simple and efficient way to handle FCM notifications within a Laravel application. With this package, developers can easily integrate FCM notifications into their Laravel projects, allowing for real-time updates and communication with users. The package leverages the power of Firebase's robust cloud messaging service, making it easier to send targeted notifications to different user segments.",
+    "description": "This package provides (Laravel Notification) channels for sending notifications via FCM (Firebase Cloud Messaging) using HTTP v1 API.",
     "type": "library",
     "license": "MIT",
     "autoload": {
