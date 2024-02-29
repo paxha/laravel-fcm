@@ -14,7 +14,8 @@ Laravel application. With this package, developers can easily integrate FCM noti
 allowing for real-time updates and communication with users. The package leverages the power of Firebase's robust cloud
 messaging service, making it easier to send targeted notifications to different user segments.
 
-[//]: # (https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages)
+For more information about the Firebase Cloud Messaging HTTP v1 API, please refer to the official
+documentation: https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages
 
 ## Installation
 
