@@ -8,16 +8,16 @@ use LaravelFCM\Channels\FCMChannel;
 
 class FCMServiceProvider extends ServiceProvider
 {
-    public function register(): void
+    public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/fcm.php', 'fcm');
     }
 
-    public function boot(): void
+    public function boot()
     {
         $this->publishes([
             __DIR__ . '/../config/fcm.php' => config_path('fcm.php'),
-        ], 'config');
+        ], 'fcm-config');
 
         $this->registerNotificationChannels();
     }
