@@ -101,3 +101,40 @@ class NewMessage extends Notification implements ShouldQueue
     }
 }
 ```
+
+## Post Sending Notification
+
+After sending the notification, it will call an event, and you can listen to the event to get the response of the
+notification. And you can also do some other stuff after sending the notification.
+
+```bash
+php artisan make:listener PostNotificationListener
+```
+
+In your `EventServiceProvider`:
+
+```php
+protected $listen = [
+    \LaravelFCM\Events\FCMNotificationSent::class => [
+        PostNotificationListener::class,
+    ],
+];
+```
+
+In your `PostNotificationListener`:
+
+```php
+public function handle(object $event): void
+{
+    // you can the notifiable instance
+    $notifiable = $event->notifiable;
+    // you can get the notification instance
+    $notification = $event->notification;
+    // you can get the message instance. This is the message that was sent to FCM
+    $message = $event->message;
+     // you can get the response of the notification
+    $response = $event->response;
+
+    // you can also do some other stuff after sending the notification
+}
+```
