@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'default' => 'fcm',
+
     'channels' => [
         'fcm' => [
             'project' => env('GOOGLE_PROJECT'),

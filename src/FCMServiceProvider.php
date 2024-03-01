@@ -5,11 +5,18 @@ namespace LaravelFCM;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider;
 use LaravelFCM\Channels\FCMChannel;
+use LaravelFCM\Services\FCM;
 
 class FCMServiceProvider extends ServiceProvider
 {
     public function register()
     {
+        $this->app->bind('fcm', function () {
+            return new FCM();
+        });
+
+        $this->app->alias(Facades\FCM::class, FCM::class);
+
         $this->mergeConfigFrom(__DIR__ . '/../config/fcm.php', 'fcm');
     }
 
