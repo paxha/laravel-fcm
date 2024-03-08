@@ -58,6 +58,21 @@ GOOGLE_SERVICE_ACCOUNT=service-account.json
 To send a notification, you can use the channel provided by this package. Here's an example of how to send a
 notification using the `fcm` channel:
 
+Before sending the notification, you need to use our `HasPushToken` trait in your notifiable model. 
+
+```php
+class YourModel extends Model
+{
+    use \LaravelFCM\Traits\HasPushToken;
+    
+    // if your model has a push token column name other than `push_token` then you can define it like this
+    public function routeNotificationForFCM()
+    {
+        return $this->your_custom_column; // column name where you stored the push token
+    }
+}
+```
+
 Create a new notification using the following command:
 
 ```bash
