@@ -43,14 +43,14 @@ You can configure your FCM settings in the `fcm.php` file. Here's an example of 
 
 You can also set your FCM settings in your `.env` file:
 
-Please put your service account file in the `storage/app` folder and set the filename in the `.env` file.
+Please put your service account file at `root` or any nested folder and set the filename with path in the `.env` file.
 
 You can create a service account file from the Google Cloud Console. For more information, please refer to the
 official: https://cloud.google.com/iam/docs/service-accounts-create
 
 ```dotenv
 GOOGLE_PROJECT=your-project-id
-GOOGLE_SERVICE_ACCOUNT=service-account.json
+GOOGLE_SERVICE_ACCOUNT=fcm-certificates/service-account.json
 ```
 
 ## Usage
