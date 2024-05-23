@@ -36,7 +36,7 @@ class FCMChannel
 
         $client = new Client();
 
-        $serviceAccount = Storage::json($this->serviceAccount);
+        $serviceAccount = file_get_contents($this->serviceAccount);
 
         $client->setAuthConfig($serviceAccount);
 
