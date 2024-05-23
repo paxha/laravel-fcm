@@ -36,7 +36,7 @@ class FCMChannel
 
         $client = new Client();
 
-        $serviceAccount = json_decode(file_get_contents($this->serviceAccount));
+        $serviceAccount = json_decode(file_get_contents($this->serviceAccount), true);
 
         $client->setAuthConfig($serviceAccount);
 
