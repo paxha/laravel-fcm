@@ -28,9 +28,9 @@ class FCMChannel
      */
     public function send($notifiable, $notification)
     {
-        $token = $notifiable->routeNotificationForFCM();
+        $tokens = $notifiable->routeNotificationForFCM();
 
-        if (!$token) {
+        if (empty($tokens)) {
             return;
         }
 
@@ -45,9 +45,7 @@ class FCMChannel
         $httpClient = $client->authorize();
 
         $message = [
-            'message' => [
-                'token' => $token,
-            ],
+            'message' => [],
         ];
 
         if (method_exists($notification, 'toFCM')) {
@@ -65,9 +63,17 @@ class FCMChannel
         if (method_exists($notification, 'toData')) {
             $message['message']['data'] = $notification->toData();
         }
+        
+        if(! is_array($tokens)) {
+            $tokens = [$tokens];
+        }
+        
+        foreach($tokens as $token) {
+            $message['message']['token'] = $token;
+            
+            $response = $httpClient->post("https://fcm.googleapis.com/v1/projects/$this->project/messages:send", ['json' => $message]);
 
-        $response = $httpClient->post("https://fcm.googleapis.com/v1/projects/$this->project/messages:send", ['json' => $message]);
-
-        event(new FCMNotificationSent($notifiable, $notification, $message, $response));
+            event(new FCMNotificationSent($notifiable, $notification, $message, $response));
+        }
     }
 }
