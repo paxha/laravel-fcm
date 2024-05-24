@@ -6,7 +6,6 @@ use Google\Client;
 use Google\Exception;
 use Google\Service\FirebaseCloudMessaging;
 use GuzzleHttp\Exception\GuzzleException;
-use Illuminate\Support\Facades\Storage;
 use LaravelFCM\Events\FCMNotificationSent;
 
 class FCMChannel
@@ -36,7 +35,7 @@ class FCMChannel
 
         $client = new Client();
 
-        $serviceAccount = json_decode(file_get_contents($this->serviceAccount), true);
+        $serviceAccount = json_decode(file_get_contents(config_path($this->serviceAccount)), true);
 
         $client->setAuthConfig($serviceAccount);
 
@@ -63,14 +62,14 @@ class FCMChannel
         if (method_exists($notification, 'toData')) {
             $message['message']['data'] = $notification->toData();
         }
-        
-        if(! is_array($tokens)) {
+
+        if (!is_array($tokens)) {
             $tokens = [$tokens];
         }
-        
-        foreach($tokens as $token) {
+
+        foreach ($tokens as $token) {
             $message['message']['token'] = $token;
-            
+
             $response = $httpClient->post("https://fcm.googleapis.com/v1/projects/$this->project/messages:send", ['json' => $message]);
 
             event(new FCMNotificationSent($notifiable, $notification, $message, $response));
