@@ -24,12 +24,18 @@
         "google/apiclient": "^2.15",
         "ext-json": "*"
     },
+    "scripts": {
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
+    },
     "extra": {
         "laravel": {
             "providers": [
                 "LaravelFCM\\FCMServiceProvider"
             ]
-        }
+        },
+        "google/apiclient-services": [
+            "FirebaseCloudMessaging"
+        ]
     },
     "config": {
         "sort-packages": true
