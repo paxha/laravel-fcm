@@ -40,7 +40,7 @@ class FCM
     {
         $this->client = new Client();
 
-        $serviceAccount = Storage::json(config("fcm.channels.$channel.service_account"));
+        $serviceAccount = json_decode(file_get_contents(config_path("fcm.channels.$channel.service_account")), true);
 
         $this->client->setAuthConfig($serviceAccount);
 
