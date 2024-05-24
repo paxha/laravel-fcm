@@ -5,7 +5,6 @@ namespace LaravelFCM\Services;
 use Google\Client;
 use Google\Exception;
 use Google\Service\FirebaseCloudMessaging;
-use Illuminate\Support\Facades\Storage;
 
 class FCM
 {
@@ -40,7 +39,7 @@ class FCM
     {
         $this->client = new Client();
 
-        $serviceAccount = json_decode(file_get_contents(config_path("fcm.channels.$channel.service_account")), true);
+        $serviceAccount = json_decode(file_get_contents(config_path(config("fcm.channels")[$channel]['service_account'])), true);
 
         $this->client->setAuthConfig($serviceAccount);
 
