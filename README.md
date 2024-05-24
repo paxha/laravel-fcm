@@ -58,7 +58,7 @@ GOOGLE_SERVICE_ACCOUNT=firebase-certificates/service-account.json
 To send a notification, you can use the channel provided by this package. Here's an example of how to send a
 notification using the `fcm` channel:
 
-Before sending the notification, you need to use our `HasPushToken` trait in your notifiable model. 
+Before sending the notification, you need to use our `HasPushToken` trait in your notifiable model.
 
 ```php
 class YourModel extends Model
@@ -152,4 +152,39 @@ public function handle(object $event): void
 
     // you can also do some other stuff after sending the notification
 }
+```
+
+## Cleaning up unused services OPTIONAL
+
+There are 200+ Google API services. The chances are good that you will not want them all. In order to avoid shipping
+these dependencies with your code, you can run the `Google\Task\Composer::cleanup` task and specify the services you want
+to keep in `composer.json`:
+
+```json
+{
+    "scripts": {
+        "post-autoload-dump": [
+            .
+            .
+            .
+            "Google\\Task\\Composer::cleanup"
+        ]
+    },
+    "extra": {
+        .
+        .
+        "google/apiclient-services": [
+            "FirebaseCloudMessaging"
+        ]
+    }
+}
+```
+
+This example will remove all services other than "FirebaseCloudMessaging" when composer update or a fresh composer install is run.
+
+**IMPORTANT:** If you add any services back in `composer.json`, you will need to remove the `vendor/google/apiclient-services` directory explicitly for the change you made to have effect:
+
+```shell
+rm -r vendor/google/apiclient-services
+composer update
 ```
