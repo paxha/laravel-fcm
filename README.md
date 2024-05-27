@@ -90,6 +90,7 @@ class NewMessage extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    // take params according to your requiremnt.
     public function __construct(
         public ?string $title = null,
         public ?string $body = null,
@@ -102,6 +103,7 @@ class NewMessage extends Notification implements ShouldQueue
         return ['fcm'];
     }
 
+    // optional: you can use according to your requirement.
     public function toFCM()
     {
         return [
@@ -109,8 +111,32 @@ class NewMessage extends Notification implements ShouldQueue
             'body' => $this->body,
         ];
     }
+
+    // optional: you can use according to your requirement.
+    public function toAPS()
+    {
+        return [
+            //
+        ];
+    }
     
-    // this is optional
+    // optional: you can use according to your requirement.
+    public function toAndroid()
+    {
+        return [
+            //
+        ];
+    }
+
+    // optional: you can use according to your requirement.
+    public function toWeb()
+    {
+        return [
+            //
+        ];
+    }
+
+    // optional: you can use according to your requirement.
     public function toData() {
         return $this->data;
     }
